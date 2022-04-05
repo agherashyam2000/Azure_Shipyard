@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
+#set -e
+#set -o pipefail
 
 # get mpi ref and set up openfoam env
 #OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
@@ -25,6 +25,6 @@ do
 done
 
 # export parameters
-export mpirun=`which mpirun`
+#export mpirun=`which mpirun`
 export np
 export hostfile
