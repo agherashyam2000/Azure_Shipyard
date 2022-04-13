@@ -5,9 +5,9 @@ set -o pipefail
 
 # get mpi ref and set up openfoam env
 #OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
-source /etc/profile.d/modules.sh
+#source /etc/profile.d/modules.sh
 #module add mpi/openmpi-x86_64
-source /usr/lib/openfoam/openfoam2106/etc/bashrc
+#source /usr/lib/openfoam/openfoam2106/etc/bashrc
 
 # copy sample into auto scratch shared area
 #AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
@@ -15,13 +15,13 @@ source /usr/lib/openfoam/openfoam2106/etc/bashrc
 #cp -r $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDaily .
 #cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict pitzDaily/system/
 
-cd $AZ_BATCH_TASK_DIR
+#cd $AZ_BATCH_TASK_DIR
 
 # get nodes and compute number of processors
-IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
-nodes=${#HOSTS[@]}
-ppn=`nproc`
-np=$(($nodes * $ppn))
+#IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
+#nodes=${#HOSTS[@]}
+#ppn=`nproc`
+#np=$(($nodes * $ppn))
 
 # substitute proper number of subdomains
 #sed -i -e "s/^numberOfSubdomains 4/numberOfSubdomains $np;/" pitzDaily/system/decomposeParDict
@@ -38,17 +38,17 @@ np=$(($nodes * $ppn))
 #decomposePar -force
 
 # create hostfile
-hostfile="hostfile"
-touch $hostfile
->| $hostfile
-for node in "${HOSTS[@]}"
-do
-    echo $node slots=$ppn max-slots=$ppn >> $hostfile
-done
+#hostfile="hostfile"
+#touch $hostfile
+#>| $hostfile
+#for node in "${HOSTS[@]}"
+#do
+#    echo $node slots=$ppn max-slots=$ppn >> $hostfile
+#done
 
 # export parameters
-export mpirun=`which mpirun`
-export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
-export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
-export np
-export hostfile
+#export mpirun=`which mpirun`
+#export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+#export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+#export np
+#export hostfile
