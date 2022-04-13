@@ -5,9 +5,9 @@ set -o pipefail
 
 # get mpi ref and set up openfoam env
 #OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
-#source /etc/profile.d/modules.sh
+source /etc/profile.d/modules.sh
 #module add mpi/openmpi-x86_64
-#source /usr/lib/openfoam/openfoam2106/etc/bashrc
+source /usr/lib/openfoam/openfoam2106/etc/bashrc
 
 # copy sample into auto scratch shared area
 #AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
@@ -47,8 +47,8 @@ set -o pipefail
 #done
 
 # export parameters
-#export mpirun=`which mpirun`
-#export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
-#export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+export mpirun=`which mpirun`
+export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
 #export np
 #export hostfile
