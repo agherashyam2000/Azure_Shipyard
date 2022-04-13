@@ -10,10 +10,12 @@ source /etc/profile.d/modules.sh
 source /usr/lib/openfoam/openfoam2106/etc/bashrc
 
 # copy sample into auto scratch shared area
-AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
-cd $AUTO_SCRATCH_DIR
+#AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
+#cd $AUTO_SCRATCH_DIR
 #cp -r $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDaily .
 #cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict pitzDaily/system/
+
+cd $AZ_BATCH_TASK_DIR
 
 # get nodes and compute number of processors
 IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
