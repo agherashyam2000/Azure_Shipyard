@@ -12,10 +12,9 @@ source $OPENFOAM_DIR/etc/bashrc
 # copy sample into auto scratch shared area
 #AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
 #cd $AUTO_SCRATCH_DIR
-#cp -r $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDaily .
-#cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict pitzDaily/system/
-
-#cd $AZ_BATCH_TASK_DIR
+cd AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/
+cp -r $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDaily $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/
+cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/system/
 
 # get nodes and compute number of processors
 IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
@@ -56,4 +55,3 @@ export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x
 export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
 export np
 export hostfile
-
