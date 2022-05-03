@@ -32,7 +32,7 @@ np=$(($nodes * $ppn))
 
 # decompose
 #cd pitzDaily
-#blockMesh
+#blockMesh 
 #decomposePar -force
 
 cd $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/
