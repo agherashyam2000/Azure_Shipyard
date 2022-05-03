@@ -15,6 +15,8 @@ source $OPENFOAM_DIR/etc/bashrc
 cp -r $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDaily $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/
 cp $OPENFOAM_DIR/tutorials/incompressible/simpleFoam/pitzDailyExptInlet/system/decomposeParDict $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/system/
 
+cd $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/
+
 # get nodes and compute number of processors
 IFS=',' read -ra HOSTS <<< "$AZ_BATCH_HOST_LIST"
 nodes=${#HOSTS[@]}
@@ -35,7 +37,6 @@ np=$(($nodes * $ppn))
 #blockMesh 
 #decomposePar -force
 
-cd $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/
 blockMesh
 decomposePar -force
 
