@@ -4,10 +4,10 @@ set -e
 set -o pipefail
 
 # get mpi ref and set up openfoam env
-#OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
+OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
 source /etc/profile.d/modules.sh
-#module add mpi/openmpi-x86_64
-source /usr/lib/openfoam/openfoam2106/etc/bashrc
+module add mpi/openmpi-x86_64
+source $OPENFOAM_DIR/etc/bashrc
 
 # copy sample into auto scratch shared area
 #AUTO_SCRATCH_DIR=$AZ_BATCH_TASK_DIR/auto_scratch
@@ -37,18 +37,23 @@ source /usr/lib/openfoam/openfoam2106/etc/bashrc
 #blockMesh
 #decomposePar -force
 
+cd $AZ_BATCH_NODE_MOUNTS_DIR/shared/Parallel-dev/pitzDaily/
+blockMesh
+decomposePar -force
+
 # create hostfile
-#hostfile="hostfile"
-#touch $hostfile
-#>| $hostfile
-#for node in "${HOSTS[@]}"
-#do
-#    echo $node slots=$ppn max-slots=$ppn >> $hostfile
-#done
+hostfile="hostfile"
+touch $hostfile
+>| $hostfile
+for node in "${HOSTS[@]}"
+do
+    echo $node slots=$ppn max-slots=$ppn >> $hostfile
+done
 
 # export parameters
 export mpirun=`which mpirun`
 export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
 export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
-#export np
-#export hostfile
+export np
+export hostfile
+
