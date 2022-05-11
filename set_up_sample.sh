@@ -36,7 +36,7 @@ np=$(($nodes * $ppn))
 #fi
 
 # decompose
-cd pitzDaily
+#cd pitzDaily
 #blockMesh 
 #decomposePar -force
 
