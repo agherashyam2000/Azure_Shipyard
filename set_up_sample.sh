@@ -56,6 +56,9 @@ done
 # export parameters
 mpienvopts=`echo \`env | grep "WM_\|FOAM_" | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
 mpienvopts="$mpienvopts -x PATH -x LD_LIBRARY_PATH -x MPI_BUFFER_SIZE"
-export mpienvopts
-export np
-export hostfile
+
+mpirun -np $np -hostfile $hostfile -x $mpienvopts simpleFoam -parallel
+
+#export mpienvopts
+#export np
+#export hostfile
