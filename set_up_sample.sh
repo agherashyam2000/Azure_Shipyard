@@ -4,9 +4,9 @@ set -e
 set -o pipefail
 
 # get mpi ref and set up openfoam env
-OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-4.0
+OPENFOAM_DIR=/opt/openfoam
 source /etc/profile.d/modules.sh
-module add mpi/openmpi-x86_64
+#module add mpi/openmpi-x86_64
 source $OPENFOAM_DIR/etc/bashrc
 
 # copy sample into auto scratch shared area
