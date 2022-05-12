@@ -4,9 +4,9 @@ set -e
 set -o pipefail
 
 # get mpi ref and set up openfoam env
-#OPENFOAM_DIR=/opt/openfoam
-OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-7
-#source /etc/profile.d/modules.sh
+OPENFOAM_DIR=/opt/openfoam
+#OPENFOAM_DIR=/opt/OpenFOAM/OpenFOAM-7
+source /etc/profile.d/modules.sh
 #module add mpi/openmpi-x86_64
 source $OPENFOAM_DIR/etc/bashrc
 
