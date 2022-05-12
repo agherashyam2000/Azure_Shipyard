@@ -53,8 +53,8 @@ do
 done
 
 # export parameters
-export mpirun=`which mpirun`
-export mpienvopts=`echo \`env | grep WM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
-export mpienvopts2=`echo \`env | grep FOAM_ | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+mpienvopts=`echo \`env | grep "WM_\|FOAM_" | sed -e "s/=.*$//"\` | sed -e "s/ / -x /g"`
+mpienvopts="$mpienvopts -x PATH -x LD_LIBRARY_PATH -x MPI_BUFFER_SIZE"
+export mpienvopts
 export np
 export hostfile
